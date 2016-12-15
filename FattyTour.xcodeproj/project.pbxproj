@@ -12,7 +12,36 @@
 		84F3DA921E02337A00C9492D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F3DA901E02337A00C9492D /* Main.storyboard */; };
 		84F3DA941E02337A00C9492D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F3DA931E02337A00C9492D /* Assets.xcassets */; };
 		84F3DA971E02337A00C9492D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F3DA951E02337A00C9492D /* LaunchScreen.storyboard */; };
+		84F3DAA31E023C5C00C9492D /* CommunicationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3DA9E1E023C5C00C9492D /* CommunicationCore.swift */; };
+		84F3DAA41E023C5C00C9492D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3DA9F1E023C5C00C9492D /* LoginViewController.swift */; };
+		84F3DAA51E023C5C00C9492D /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3DAA01E023C5C00C9492D /* MyProfileViewController.swift */; };
+		84F3DAA61E023C5C00C9492D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3DAA11E023C5C00C9492D /* StringExtensions.swift */; };
+		84F3DAB61E02455B00C9492D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3DAB51E02455B00C9492D /* WebViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84F3DAAD1E023C7A00C9492D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84F3DAA81E023C7A00C9492D /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE45519693E190098E6F3;
+			remoteInfo = CryptoSwift;
+		};
+		84F3DAAF1E023C7A00C9492D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84F3DAA81E023C7A00C9492D /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE46019693E190098E6F3;
+			remoteInfo = Tests;
+		};
+		84F3DAB31E023E9D00C9492D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84F3DAA81E023C7A00C9492D /* CryptoSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 754BE45419693E190098E6F3;
+			remoteInfo = CryptoSwift;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		84F3DA891E02337A00C9492D /* FattyTour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FattyTour.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +51,12 @@
 		84F3DA931E02337A00C9492D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F3DA961E02337A00C9492D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84F3DA981E02337A00C9492D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F3DA9E1E023C5C00C9492D /* CommunicationCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationCore.swift; sourceTree = "<group>"; };
+		84F3DA9F1E023C5C00C9492D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		84F3DAA01E023C5C00C9492D /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		84F3DAA11E023C5C00C9492D /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		84F3DAA81E023C7A00C9492D /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		84F3DAB51E02455B00C9492D /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +73,7 @@
 		84F3DA801E02337A00C9492D = {
 			isa = PBXGroup;
 			children = (
+				84F3DAA81E023C7A00C9492D /* CryptoSwift.xcodeproj */,
 				84F3DA8B1E02337A00C9492D /* FattyTour */,
 				84F3DA8A1E02337A00C9492D /* Products */,
 			);
@@ -54,6 +90,11 @@
 		84F3DA8B1E02337A00C9492D /* FattyTour */ = {
 			isa = PBXGroup;
 			children = (
+				84F3DAB51E02455B00C9492D /* WebViewController.swift */,
+				84F3DA9E1E023C5C00C9492D /* CommunicationCore.swift */,
+				84F3DA9F1E023C5C00C9492D /* LoginViewController.swift */,
+				84F3DAA01E023C5C00C9492D /* MyProfileViewController.swift */,
+				84F3DAA11E023C5C00C9492D /* StringExtensions.swift */,
 				84F3DA8C1E02337A00C9492D /* AppDelegate.swift */,
 				84F3DA8E1E02337A00C9492D /* ViewController.swift */,
 				84F3DA901E02337A00C9492D /* Main.storyboard */,
@@ -62,6 +103,15 @@
 				84F3DA981E02337A00C9492D /* Info.plist */,
 			);
 			path = FattyTour;
+			sourceTree = "<group>";
+		};
+		84F3DAA91E023C7A00C9492D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84F3DAAE1E023C7A00C9492D /* CryptoSwift.framework */,
+				84F3DAB01E023C7A00C9492D /* Tests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +128,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				84F3DAB41E023E9D00C9492D /* PBXTargetDependency */,
 			);
 			name = FattyTour;
 			productName = FattyTour;
@@ -96,7 +147,13 @@
 				TargetAttributes = {
 					84F3DA881E02337A00C9492D = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = TU2E6MBFW4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -111,12 +168,35 @@
 			mainGroup = 84F3DA801E02337A00C9492D;
 			productRefGroup = 84F3DA8A1E02337A00C9492D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 84F3DAA91E023C7A00C9492D /* Products */;
+					ProjectRef = 84F3DAA81E023C7A00C9492D /* CryptoSwift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				84F3DA881E02337A00C9492D /* FattyTour */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		84F3DAAE1E023C7A00C9492D /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 84F3DAAD1E023C7A00C9492D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		84F3DAB01E023C7A00C9492D /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = 84F3DAAF1E023C7A00C9492D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		84F3DA871E02337A00C9492D /* Resources */ = {
@@ -136,12 +216,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F3DAA61E023C5C00C9492D /* StringExtensions.swift in Sources */,
+				84F3DAA51E023C5C00C9492D /* MyProfileViewController.swift in Sources */,
+				84F3DAA41E023C5C00C9492D /* LoginViewController.swift in Sources */,
+				84F3DAA31E023C5C00C9492D /* CommunicationCore.swift in Sources */,
+				84F3DAB61E02455B00C9492D /* WebViewController.swift in Sources */,
 				84F3DA8F1E02337A00C9492D /* ViewController.swift in Sources */,
 				84F3DA8D1E02337A00C9492D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84F3DAB41E023E9D00C9492D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CryptoSwift;
+			targetProxy = 84F3DAB31E023E9D00C9492D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		84F3DA901E02337A00C9492D /* Main.storyboard */ = {
@@ -203,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -247,7 +340,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -260,7 +353,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TU2E6MBFW4;
 				INFOPLIST_FILE = FattyTour/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FattyTour.FattyTour;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,7 +367,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TU2E6MBFW4;
 				INFOPLIST_FILE = FattyTour/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FattyTour.FattyTour;
 				PRODUCT_NAME = "$(TARGET_NAME)";
