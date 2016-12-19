@@ -9,15 +9,37 @@
 import UIKit
 
 class MyProfileViewController: UIViewController {
-    private var communicationCore = CommunicationCore()
     
     @IBOutlet weak var navigationBarTitle: UINavigationItem!
     @IBOutlet weak var showLoginViewBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(notifictionNames.loginSuccess), object: nil, queue: nil){
+            notification in
+            print("notification is \(notification)")
+            DispatchQueue.main.async {
+                self.navigationBarTitle.title = (notification.object as! User).fullName
+                self.showLoginViewBtn.title = "切换用户"
+            }
+            
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(notifictionNames.loginFailed), object: nil, queue: nil){
+            notification in
+            print("notification is \(notification)")
+            DispatchQueue.main.async {
+                self.navigationBarTitle.title = "未登录"
+                self.showLoginViewBtn.title = "登录"
+                self.performSegue(withIdentifier: "segueLoginView", sender: self)
+            }
+            
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,10 +53,9 @@ class MyProfileViewController: UIViewController {
         if let username = defaults.string(forKey: UserLocalStorageKeys.username), let password = defaults.string(forKey: UserLocalStorageKeys.password)?.decryption(key: "jjcustomize") {
             if(!communicationCore.isLogined){
                 print("not login")
-                if let loginedUser = communicationCore.Login(username, password: password, completionHandler: loginCompletion){
-                }
+                communicationCore.Login(username, password: password)
             }else{
-                
+                loginCompletion(true)
             }
         }else{
             print("no defualt data")
@@ -46,21 +67,15 @@ class MyProfileViewController: UIViewController {
         self.performSegue(withIdentifier: "segueLoginView", sender: self)
     }
     
-    private func loginCompletion(_ result: Any){
-        switch result {
-        case is User:
-            navigationBarTitle.title = (result as! User).fullName
-            showLoginViewBtn.title = "切换用户"
-            break
-        case is Bool:
-            if(!(result as! Bool)){
-                showLoginViewBtn.title = "登录"
-                self.performSegue(withIdentifier: "segueLoginView", sender: self)
-            }
-            break
-        default:
+    private func loginCompletion(_ result: Bool){
+        if(!result){
+            navigationBarTitle.title = "未登录"
+            showLoginViewBtn.title = "登录"
             self.performSegue(withIdentifier: "segueLoginView", sender: self)
-            break
+        }else{
+            navigationBarTitle.title = communicationCore.getLoginedUser!.fullName
+            showLoginViewBtn.title = "切换用户"
+            print(communicationCore.getLoginedUser!)
         }
     }
     /*

@@ -8,15 +8,6 @@
 
 import Foundation
 
-struct UserLocalStorageKeys {
-    static let username = "username"
-    static let password = "password"
-}
-
-struct User {
-    var id: String
-    var fullName : String
-}
 
 class CommunicationCore{
     private let encryptKey = "jjcustomize"
@@ -40,26 +31,28 @@ class CommunicationCore{
         static let api = "wp-admin/admin-ajax.php"
     }
     
-    internal func Login(_ username: String, password: String, completionHandler: @escaping (Any) -> () ) -> User?{
-        print("try login")
+    internal func Login(_ username: String, password: String ){
+        print("try login" + time(nil).description)
         let url = URL(string: Urls.host + Urls.api)!
         let passwordEncrypted = password.encrypt(key: encryptKey)
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        let postString = "action=jj_test&username=\(username)&password=\(passwordEncrypted)"
+        let postString = "action=jj_login&username=\(username)&password=\(passwordEncrypted)"
         
         request.httpBody = postString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(error)")
+                NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.loginFailed), object: "error=\(error)")
                 return
             }
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(response)")
+                NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.loginFailed), object: "Server Error")
             }
             
             let result = try? JSONSerialization.jsonObject(with: data)
@@ -81,8 +74,11 @@ class CommunicationCore{
                             self.loginedUser.fullName = userData["display_name"] as! String
                             self.loginedUser.id = userData["ID"] as! String
                         }
-                        completionHandler(self.loginedUser)
+                        print("completed"  + time(nil).description)
+                        print(self.loginedUser)
                         self.logined = true
+                        
+                        NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.loginSuccess), object: self.loginedUser)
                     }else{
                         let defaults = UserDefaults.standard
                         
@@ -90,18 +86,19 @@ class CommunicationCore{
                         defaults.removeObject(forKey: UserLocalStorageKeys.password)
                         
                         defaults.synchronize()
-                        completionHandler(false)
                         self.logined = false
+                        
+                        NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.loginFailed), object: dict["errorMsg"])
                     }
                 }else{
-                    completionHandler(false)
                     self.logined = false
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.loginFailed), object: "An unexpectable happened")
                 }
             }
             
         }
         task.resume()
-        return self.loginedUser
     }
     
     internal func request(location: String = "") -> URLRequest?{

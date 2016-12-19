@@ -12,39 +12,51 @@ class LoginViewController: UIViewController{
     
     @IBOutlet weak var usernameTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var loginIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loginBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(notifictionNames.loginSuccess), object: nil, queue: nil){
+            notification in
+            DispatchQueue.main.async{
+                self.loginBtn.isEnabled = true
+                self.loginIndicator.stopAnimating()
+                self.dismissLoginView(true)
+            }
+        }
         
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(notifictionNames.loginFailed), object: nil, queue: nil){
+            notification in
+            DispatchQueue.main.async{
+                self.loginBtn.isEnabled = true
+                self.loginIndicator.stopAnimating()
+            }
+        }
     }
     
-    private var communicationCore = CommunicationCore()
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     @IBAction private func Login(_ sender: UIButton) {
         let username = usernameTxt.text!
         let password = passwordTxt.text!
         
-        if let _ = communicationCore.Login(username, password: password, completionHandler: dismissLoginView){
-            self.dismiss(animated: true, completion: nil)
-        }
-        
+        communicationCore.Login(username, password: password)
+        loginBtn.isEnabled = false
+        loginIndicator.startAnimating()
     }
     
     @IBAction func closeLoginView(_ sender: UIBarButtonItem) {
         dismissLoginView(true)
     }
     
-    private func dismissLoginView(_ result: Any){
-        
-        switch result {
-        case is Bool:
-            if(result as! Bool){
-                self.dismiss(animated: true, completion: nil)
-            }
-            break
-        default:
-            break
+    private func dismissLoginView(_ result: Bool){
+        if(result){
+            self.dismiss(animated: true, completion: nil)
         }
     }
+    
     
 }

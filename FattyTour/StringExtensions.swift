@@ -58,7 +58,7 @@ extension String{
             result += String(Character(UnicodeScalar(ascii)!))
         }
         
-        let output = keyC + (result.data(using: .utf8)?.base64EncodedString())!
+        let output = keyC + ((result.data(using: .utf8)?.base64EncodedString())!)
         
         return output
     }
@@ -76,6 +76,7 @@ extension String{
         let keyLength = encryptKey.characters.count
         
         let timeNow = time(nil)
+        
         var encryptedString = String(data: Data(base64Encoded: self.subCharString(from: cKeyLength))!, encoding: .utf8)!
         let encryptedStringLength = encryptedString.characters.count
         
