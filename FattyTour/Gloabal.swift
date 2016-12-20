@@ -22,6 +22,7 @@ struct User {
 struct notifictionNames {
     static let loginSuccess = "LoginSuccess"
     static let loginFailed = "LoginFailed"
+    static let connectionError = "ConnectionError"
 }
 
 var communicationCore = CommunicationCore()

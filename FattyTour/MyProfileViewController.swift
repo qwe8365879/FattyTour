@@ -36,6 +36,8 @@ class MyProfileViewController: UIViewController {
             }
             
         }
+        
+        
     }
     
     deinit {
@@ -61,6 +63,7 @@ class MyProfileViewController: UIViewController {
             print("no defualt data")
             loginCompletion(false)
         }
+        communicationCore.getAirportTransOrders("all")
     }
     
     @IBAction func showLoginView(_ sender: UIBarButtonItem) {

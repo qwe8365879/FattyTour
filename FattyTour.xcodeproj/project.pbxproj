@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		841C4E491E03BFAC003D4ECF /* Gloabal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C4E481E03BFAC003D4ECF /* Gloabal.swift */; };
+		841C4E721E07D378003D4ECF /* MyProfileMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C4E711E07D378003D4ECF /* MyProfileMenuTableViewController.swift */; };
 		84F3DA8D1E02337A00C9492D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3DA8C1E02337A00C9492D /* AppDelegate.swift */; };
 		84F3DA921E02337A00C9492D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F3DA901E02337A00C9492D /* Main.storyboard */; };
 		84F3DA941E02337A00C9492D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F3DA931E02337A00C9492D /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		841C4E481E03BFAC003D4ECF /* Gloabal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gloabal.swift; sourceTree = "<group>"; };
+		841C4E711E07D378003D4ECF /* MyProfileMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileMenuTableViewController.swift; sourceTree = "<group>"; };
 		84F3DA891E02337A00C9492D /* FattyTour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FattyTour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F3DA8C1E02337A00C9492D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F3DA911E02337A00C9492D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				84F3DAB51E02455B00C9492D /* WebViewController.swift */,
 				84F3DA9F1E023C5C00C9492D /* LoginViewController.swift */,
 				84F3DAA01E023C5C00C9492D /* MyProfileViewController.swift */,
+				841C4E711E07D378003D4ECF /* MyProfileMenuTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				84F3DAA51E023C5C00C9492D /* MyProfileViewController.swift in Sources */,
 				84F3DAA41E023C5C00C9492D /* LoginViewController.swift in Sources */,
 				84F3DAA31E023C5C00C9492D /* CommunicationCore.swift in Sources */,
+				841C4E721E07D378003D4ECF /* MyProfileMenuTableViewController.swift in Sources */,
 				84F3DAB61E02455B00C9492D /* WebViewController.swift in Sources */,
 				84F3DA8D1E02337A00C9492D /* AppDelegate.swift in Sources */,
 				841C4E491E03BFAC003D4ECF /* Gloabal.swift in Sources */,

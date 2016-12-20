@@ -32,29 +32,11 @@ class CommunicationCore{
     }
     
     internal func Login(_ username: String, password: String ){
-        print("try login" + time(nil).description)
-        let url = URL(string: Urls.host + Urls.api)!
+        print("try login")
         let passwordEncrypted = password.encrypt(key: encryptKey)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
         let postString = "action=jj_login&username=\(username)&password=\(passwordEncrypted)"
         
-        request.httpBody = postString.data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                print("error=\(error)")
-                NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.loginFailed), object: "error=\(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-                NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.loginFailed), object: "Server Error")
-            }
-            
+        apiConnection(postString, successHandler: {data in
             let result = try? JSONSerialization.jsonObject(with: data)
             if let dict = result as? [String: Any]{
                 for (k, v) in dict{
@@ -96,6 +78,48 @@ class CommunicationCore{
                     NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.loginFailed), object: "An unexpectable happened")
                 }
             }
+
+        })
+    }
+    
+    internal func getAirportTransOrders(_ orderType: String){
+        print("try get airport trans orders")
+        let nonce = "getairporttransorders".encrypt(key: encryptKey)
+        let postString = "action=jj_get_airport_trans_orders&nonce=\(nonce)&order_type=\(orderType)"
+        
+        apiConnection(postString, successHandler: {data in
+            let result = try? JSONSerialization.jsonObject(with: data)
+            if let dict = result as? [String: Any]{
+                for (k, v) in dict{
+                    print(k)
+                    print(v)
+                }
+            }
+            
+        })
+    }
+    
+    private func apiConnection(_ postString: String, successHandler: @escaping (Data) -> ()){
+        let url = URL(string: Urls.host + Urls.api)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.httpBody = postString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(error)")
+                NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.connectionError), object: "error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+                NotificationCenter.default.post(name: NSNotification.Name(notifictionNames.connectionError), object: "Server Error")
+            }
+            
+            successHandler(data)
             
         }
         task.resume()
