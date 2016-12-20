@@ -1,17 +1,22 @@
 //
-//  MyProfileMenuTableViewController.swift
+//  AirportTransOrdersTableViewController.swift
 //  FattyTour
 //
-//  Created by admin on 19/12/16.
+//  Created by admin on 20/12/16.
 //  Copyright © 2016 FattyTour. All rights reserved.
 //
 
 import UIKit
 
-class MyProfileMenuTableViewController: UITableViewController {
+class AirportTransOrdersTableViewController: UITableViewController {
+    
+    @IBOutlet weak var orderTypeTitle: UINavigationItem!
+    var orderType = "my_order"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        communicationCore.getAirportTransOrders(orderType)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -19,11 +24,10 @@ class MyProfileMenuTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let airportTransOrderDisplayTableViewController = storyboard?.instantiateViewController(withIdentifier: "airportTransOrderDisplayTableView")
-        //self.navigationController?.pushViewController(airportTransOrderDisplayTableViewController!, animated: true)
-        
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
