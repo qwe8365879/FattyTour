@@ -56,7 +56,7 @@ class CommunicationCore{
                             self.loginedUser.fullName = userData["display_name"] as! String
                             self.loginedUser.id = userData["ID"] as! String
                         }
-                        print("completed"  + time(nil).description)
+                        print("completed")
                         print(self.loginedUser)
                         self.logined = true
                         

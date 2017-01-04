@@ -22,7 +22,8 @@ class LoginViewController: UIViewController{
             DispatchQueue.main.async{
                 self.loginBtn.isEnabled = true
                 self.loginIndicator.stopAnimating()
-                self.dismissLoginView(true)
+                
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
         
@@ -46,16 +47,6 @@ class LoginViewController: UIViewController{
         communicationCore.Login(username, password: password)
         loginBtn.isEnabled = false
         loginIndicator.startAnimating()
-    }
-    
-    @IBAction func closeLoginView(_ sender: UIBarButtonItem) {
-        dismissLoginView(true)
-    }
-    
-    private func dismissLoginView(_ result: Bool){
-        if(result){
-            self.dismiss(animated: true, completion: nil)
-        }
     }
     
     

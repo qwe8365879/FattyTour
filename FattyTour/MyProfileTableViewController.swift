@@ -8,31 +8,28 @@
 
 import UIKit
 
-class MyProfileViewController: UIViewController {
+class MyProfileTableViewController: UITableViewController {
     
-    @IBOutlet weak var navigationBarTitle: UINavigationItem!
-    @IBOutlet weak var showLoginViewBtn: UIBarButtonItem!
+    @IBOutlet weak var showLoginViewLbl: UILabel!
+    @IBOutlet weak var loginNameLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(forName: NSNotification.Name(notifictionNames.loginSuccess), object: nil, queue: nil){
             notification in
-            print("notification is \(notification)")
             DispatchQueue.main.async {
-                self.navigationBarTitle.title = (notification.object as! User).fullName
-                self.showLoginViewBtn.title = "切换用户"
+                self.loginNameLbl.text = (notification.object as! User).fullName
+                self.showLoginViewLbl.text = "切换用户"
             }
             
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name(notifictionNames.loginFailed), object: nil, queue: nil){
             notification in
-            print("notification is \(notification)")
             DispatchQueue.main.async {
-                self.navigationBarTitle.title = "未登录"
-                self.showLoginViewBtn.title = "登录"
-                self.performSegue(withIdentifier: "segueLoginView", sender: self)
+                self.loginNameLbl.text = "未登录"
+                self.showLoginViewLbl.text = "登录"
             }
             
         }
@@ -42,11 +39,6 @@ class MyProfileViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,32 +55,37 @@ class MyProfileViewController: UIViewController {
             print("no defualt data")
             loginCompletion(false)
         }
-        communicationCore.getAirportTransOrders("all")
-    }
-    
-    @IBAction func showLoginView(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "segueLoginView", sender: self)
+        
     }
     
     private func loginCompletion(_ result: Bool){
         if(!result){
-            navigationBarTitle.title = "未登录"
-            showLoginViewBtn.title = "登录"
-            self.performSegue(withIdentifier: "segueLoginView", sender: self)
+            loginNameLbl.text = "未登录"
+            showLoginViewLbl.text = "登录"
         }else{
-            navigationBarTitle.title = communicationCore.getLoginedUser!.fullName
-            showLoginViewBtn.title = "切换用户"
+            loginNameLbl.text = communicationCore.getLoginedUser!.fullName
+            showLoginViewLbl.text = "切换用户"
             print(communicationCore.getLoginedUser!)
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "myAirportTransOrdersSegue"){
+            let targetViewController = (segue.destination as! AirportTransOrdersTableViewController)
+            targetViewController.orderType = "my_order"
+            targetViewController.orderTypeTitle.title = "我的订单"
+        }
+        if(segue.identifier == "pendingAirportTransOrdersSegue"){
+            let targetViewController = (segue.destination as! AirportTransOrdersTableViewController)
+            targetViewController.orderType = "pending_order"
+            targetViewController.orderTypeTitle.title = "新的订单"
+        }
+        if(segue.identifier == "bookedAirportTransOrdersSegue"){
+            let targetViewController = (segue.destination as! AirportTransOrdersTableViewController)
+            targetViewController.orderType = "booked_order"
+            targetViewController.orderTypeTitle.title = "已抢订单"
+        }
     }
-    */
+    
 
 }
